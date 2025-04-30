@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./style.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <script src="app.js"></script>
+    <title>Moovie</title>
+</head>
+<body>
+    <header>
+        <div class="logo">Moovie</div>
+        <div class="nav">
+            <ul>
+                <li>Home</li>
+                <li>BookMark</li>
+            </ul>
+        </div>
+    </header>
+    <main>
+        <div class="title">
+            <h1>본인의 취향에 맞는 영화를 찾아보세요!</h1>
+        </div>
+        <div class="search">
+            <input id="movie_search" type="text" placeholder="영화 제목" />
+            <button onclick="movieSearch()">Search</button>
+        </div>
+        <div class="bookmark"></div>
+        <div class="cards">
+        </div>
+        <div class="movie_details">
+        </div>
+    </main>
+    <footer>
+        <div>대충 저작권</div>
+    </footer>
+</body>
+</html>
