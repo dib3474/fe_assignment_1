@@ -7,7 +7,7 @@ const options = {
     headers: {
         accept: 'application/json',
         Authorization: TMDB_API_KEY
-    };
+    }
 };
 
 const movieSearch = async () => {
