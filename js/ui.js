@@ -92,7 +92,7 @@ const movieDetailAppend = (data) => {
                 </div>
             </div>
         </div>`;
-    document.querySelector('.movie_details').innerHTML(temp_html);
+    document.querySelector('.movie_details').innerHTML = temp_html;
 };
 
 export {movieDetailClose, movieAppend, movieDetailAppend, displayHome, displayBookmark, readBookMarks}

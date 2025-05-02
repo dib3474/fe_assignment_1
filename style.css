@@ -13,9 +13,6 @@ header {
     padding: 0 100px;
     border-bottom: 2px solid black;
 }
-body {
-    height: 100%;
-}
 .logo, .nav > ul > li {
     font-family: "Black Han Sans";
     color: white;
@@ -29,7 +26,6 @@ body {
     cursor: pointer;
 }
 main {
-    background-color: #FAD59A;
     background: linear-gradient(0, white 50%, #FAD59A);
     height: 100%;
     display: flex;
@@ -199,4 +195,44 @@ footer > div {
     display: flex;
     align-items: center;
     margin: 0 auto;
+}
+@media (max-width: 750px) {
+    header {
+        flex-direction: column;
+    }
+    .search {
+        width: 80%;
+    }
+    .cards, .bookmarks {
+        width: 100%;
+    }
+    .card {
+        width: 29%;
+    }
+    .modal_body {
+        width: 90%;
+    }
+    .modal_movie_content_overview {
+        height: 50%;
+    }
+}
+@media (max-width: 450px) {
+    .nav > ul > li {
+        margin: 0 30px;
+    }
+    h1 {
+        font-size: 25px;
+    }
+    .card {
+        width: 43%;
+        height: auto;
+    }
+    .modal_content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .modal_body {
+        width: 80%;
+        height: auto;
+    }
 }
