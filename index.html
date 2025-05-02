@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <script src="app.js"></script>
+    <script type="module" src="app.js"></script>
     <title>Moovie</title>
 </head>
 <body>
@@ -26,7 +26,7 @@
         </div>
         <div class="search">
             <input id="movie_search" type="text" placeholder="영화 제목" />
-            <button onclick="movieSearch()">Search</button>
+            <button id="search_btn">Search</button>
         </div>
         <div class="bookmark"></div>
         <div class="cards">
@@ -35,7 +35,7 @@
         </div>
     </main>
     <footer>
-        <div>대충 저작권</div>
+        <div></div>
     </footer>
 </body>
 </html>

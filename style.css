@@ -74,7 +74,7 @@ h1 {
     border: none;
     box-shadow: 0px 1px 5px black;
     width: 17.5%;
-    height: 400px;
+    height: 450px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,7 +94,7 @@ h1 {
 }
 .card_body > h3 {
     font-size: 15px;
-    height: 40px;
+    height: 35px;
 }
 .card_body > p {
     margin-top: 5px;
@@ -124,7 +124,7 @@ h1 {
 }
 .modal_body {
     width: 700px;
-    height: 500px;
+    height: 400px;
     background-color: white;
     box-shadow: 5px 8px 8px 1px rgba(0,0,0,.3);
     display: flex;
@@ -137,25 +137,32 @@ h1 {
 }
 .modal_content {
     display: flex;
+    justify-content: space-around;
     height: 100%;
 }
 .modal_movie_img {
+    margin-top: 25px;
     width: 200px;
 }
 .modal_movie_img > img {
     height: 300px;
-    
+    padding-left: 10px;
 }
 .modal_movie_content {
     display: flex;
     flex-direction: column;
     margin-left: 10px;
     justify-content: space-evenly;
-    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+    width: 65%;
 }
 .modal_movie_content > p, .modal_movie_content > h3 {
     border-bottom: 1px solid #A86523;
+    padding-bottom: 5px;
 } 
 .modal_movie_content_overview {
-    height: 200px;
+    height: 160px;
+}
+footer {
+    position: relative;
+    bottom: 0;
 }
