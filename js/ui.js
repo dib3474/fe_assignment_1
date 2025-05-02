@@ -4,9 +4,64 @@ const movieDetailClose = (id) => {
     document.getElementById(`${id}`).style.display = "none";
 }
 
-const bookmark = () => {
+const displayHome = () => {
+    document.querySelector('.title').style.display = "";
+    document.querySelector('.search').style.display = "";
+    document.querySelector('.cards').style.display = "";
+    document.querySelector('.bookmarks').style.display = "none";
+    document.querySelector('#home').style.color = "#FAD59A";
+    document.querySelector('#bookmark').style.color = "white";
+}
 
+const displayBookmark = () => {
+    document.querySelector('.title').style.display = "none";
+    document.querySelector('.search').style.display = "none";
+    document.querySelector('.cards').style.display = "none";
+    document.querySelector('.bookmarks').style.display = "flex";
+    document.querySelector('#home').style.color = "white";
+    document.querySelector('#bookmark').style.color = "#FAD59A";
 };
+
+const bookmarkAppend = (data) => {
+    if (localStorage.getItem(data.id) === null) {
+        localStorage.setItem(data.id, JSON.stringify(data));
+        alert("영화를 북마크에 저장했습니다!");
+    }
+    else {
+        alert("이미 북마크에 있습니다.");
+    }
+}
+
+const deleteBookmark = (id) => {
+    localStorage.removeItem(id);
+    loadBookMarks();
+}
+
+const loadBookMarks = () => {
+    if (localStorage.length > 0) {
+    document.querySelector('.bookmarks').innerHTML = '';
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const movie = JSON.parse(localStorage.getItem(key));
+            const movie_img_url = `https://media.themoviedb.org/t/p/w94_and_h141_bestv2${movie.poster_path}`;
+            const temp_html = `
+                <div class="card" id="detail_${movie.id}">
+                    <img src="${movie_img_url}" alt="${movie.title}">
+                    <div class="card_body">
+                        <h3>${(movie.title.length < 20) ? movie.title : movie.title.slice(0, 20)}</h6>
+                        <p>요약 : ${(movie.overview <= 48) ? movie.overview : movie.overview.slice(0,48)+"..." }
+                        <p>평점 : ${movie.vote_average}</p>
+                        <p>개봉일 : ${movie.release_date}</p>
+                        <a>삭제</a>
+                    </div>
+                </div>`;
+            document.querySelector('.bookmarks').insertAdjacentHTML('beforeend', temp_html);
+        }
+    }
+    else {
+        document.querySelector('.bookmarks').innerHTML = '<div class="bookmarks_null">북마크가 없습니다.</div>';
+    }
+}
 
 const movieAppend = (data) => {
     document.querySelector('.cards').innerHTML = '';
@@ -30,14 +85,17 @@ const movieAppend = (data) => {
 
 const movieDetailAppend = (data) => {
     const movie = data;
-    console.log(movie);
     document.querySelector('.movie_details').innerHTML = '';
     const movie_img_url = `https://media.themoviedb.org/t/p/w94_and_h141_bestv2${movie.poster_path}`;
     const movie_genre = movie.genres.map((genre) => genre.name).join(" / ");
     const temp_html = `
         <div id="${movie.id}" class="modal">
             <div class="modal_body">
-                <div class="modal_close">❌</div>
+                <div class=modal_header>
+                    <p>상세정보</p>
+                    <div class="modal_bookmark">⭐</div>
+                    <div class="modal_close">❌</div>
+                </div> 
                 <div class="modal_content">
                     <div class="modal_movie_img"><img src="${movie_img_url}"></div>
                     <div class="modal_movie_content">
@@ -54,4 +112,4 @@ const movieDetailAppend = (data) => {
     document.querySelector('.movie_details').insertAdjacentHTML('beforeend', temp_html);
 };
 
-export {movieDetailClose, movieAppend, movieDetailAppend}
+export {movieDetailClose, movieAppend, movieDetailAppend, displayHome, displayBookmark, bookmarkAppend, loadBookMarks, deleteBookmark}

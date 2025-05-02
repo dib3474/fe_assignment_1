@@ -1,4 +1,4 @@
-import config from './apikey.js';
+import { config } from './apikey.js';
 const API_KEY = config.TMDB_API_KEY;
 
 const options = {
@@ -10,7 +10,6 @@ const options = {
 };
 
 const getMovieSearch = async (keyword) => {
-    
     const url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ko-kr&page=1`;
 
     try {
