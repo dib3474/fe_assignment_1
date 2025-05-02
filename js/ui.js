@@ -1,26 +1,11 @@
-import config from './apikey.js';
-const API_KEY = config.TMDB_API_KEY;
 
-const options = {
-    method: 'GET',
-    headers: {
-        accept: 'application/json',
-        Authorization: API_KEY,
-    }
-};
 
-const movieSearch = async () => {
-    const keyword = document.getElementById('movie_search').value;
-    const url = `https://api.themoviedb.org/3/search/movie?query=${keyword}&include_adult=false&language=ko-kr&page=1`;
+const movieDetailClose = (id) => {
+    document.getElementById(`${id}`).style.display = "none";
+}
 
-    try {
-        const response = await fetch(url, options);
-        const responseJson = await response.json();
-        movieAppend(responseJson);
-    }
-    catch (err) {
-        console.log("에러 : " + err);
-    }
+const bookmark = () => {
+
 };
 
 const movieAppend = (data) => {
@@ -43,23 +28,7 @@ const movieAppend = (data) => {
     }
 };
 
-const movieDetailClose = (id) => {
-    document.getElementById(`${id}`).style.display = "none";
-}
-
-const getMovieDetails = async (id) => {
-    const url = `https://api.themoviedb.org/3/movie/${id}?language=ko-kr`;
-    try {
-        const response = await fetch(url, options);
-        const responseJson = await response.json();
-        movieDetails(responseJson);
-    }
-    catch (err) {
-        console.log("에러 : " + err);
-    }
-};
-
-const movieDetails = (data) => {
+const movieDetailAppend = (data) => {
     const movie = data;
     console.log(movie);
     document.querySelector('.movie_details').innerHTML = '';
@@ -84,31 +53,5 @@ const movieDetails = (data) => {
         </div>`;
     document.querySelector('.movie_details').insertAdjacentHTML('beforeend', temp_html);
 };
-    
 
-const bookmark = () => {
-
-};
-
-document.querySelector('#search_btn').addEventListener('click', movieSearch);
-
-document.querySelector('.cards').addEventListener('click', (e) => {
-    if (e.target.matches('a')) {
-        const card = e.target.closest('.card');
-        if (card) {
-            const cardId = card.id.split("_")[1];
-            getMovieDetails(cardId);
-        }
-        else { console.log("에러 : Card EventListener")}
-    }
-});
-
-document.querySelector('.movie_details').addEventListener('click', (e) => {
-    if(e.target.matches('.modal_close')) {
-        const modal = e.target.closest('.modal');
-        if(modal) {
-            movieDetailClose(modal.id);
-        }
-        else { console.log("에러 : Modal EventListener") };
-    };
-});
+export {movieDetailClose, movieAppend, movieDetailAppend}
