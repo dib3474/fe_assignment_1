@@ -18,7 +18,7 @@ const getMovieSearch = async (keyword) => {
         return responseJson;
     }
     catch (err) {
-        console.log("에러 : API요청 실패 / " + err);
+        console.log("에러 : getMovie API요청 실패 | " + err);
     }
 };
 
@@ -30,7 +30,7 @@ const getMovieDetail = async (id) => {
         return responseJson;
     }
     catch (err) {
-        console.log("에러 : API요청 실패 / " + err);
+        console.log("에러 : getMovieDetail API요청 실패 | " + err);
     }
 };
 

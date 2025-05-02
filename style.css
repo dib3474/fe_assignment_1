@@ -3,7 +3,6 @@
     font-family: "Noto Sans KR";
     font-optical-sizing: auto;
 }
-
 header {
     background-color: #A86523;
     height: 100px;
@@ -160,7 +159,6 @@ h1 {
     font-size: 22px;
     cursor: pointer;
 }
-
 .modal_content {
     display: flex;
     justify-content: space-around;
@@ -191,7 +189,6 @@ h1 {
 footer {
     height: 50px;
     border-top: 1px solid black;
-    
 }
 footer > div {
     text-align: right;

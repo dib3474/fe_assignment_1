@@ -1,9 +1,3 @@
-
-
-const movieDetailClose = (id) => {
-    document.getElementById(`${id}`).style.display = "none";
-}
-
 const displayHome = () => {
     document.querySelector('.title').style.display = "";
     document.querySelector('.search').style.display = "";
@@ -22,22 +16,7 @@ const displayBookmark = () => {
     document.querySelector('#bookmark').style.color = "#FAD59A";
 };
 
-const bookmarkAppend = (data) => {
-    if (localStorage.getItem(data.id) === null) {
-        localStorage.setItem(data.id, JSON.stringify(data));
-        alert("영화를 북마크에 저장했습니다!");
-    }
-    else {
-        alert("이미 북마크에 있습니다.");
-    }
-}
-
-const deleteBookmark = (id) => {
-    localStorage.removeItem(id);
-    loadBookMarks();
-}
-
-const loadBookMarks = () => {
+const readBookMarks = () => {
     if (localStorage.length > 0) {
     document.querySelector('.bookmarks').innerHTML = '';
         for (let i = 0; i < localStorage.length; i++) {
@@ -83,6 +62,10 @@ const movieAppend = (data) => {
     }
 };
 
+const movieDetailClose = (id) => {
+    document.getElementById(`${id}`).style.display = "none";
+}
+
 const movieDetailAppend = (data) => {
     const movie = data;
     document.querySelector('.movie_details').innerHTML = '';
@@ -109,7 +92,7 @@ const movieDetailAppend = (data) => {
                 </div>
             </div>
         </div>`;
-    document.querySelector('.movie_details').insertAdjacentHTML('beforeend', temp_html);
+    document.querySelector('.movie_details').innerHTML(temp_html);
 };
 
-export {movieDetailClose, movieAppend, movieDetailAppend, displayHome, displayBookmark, bookmarkAppend, loadBookMarks, deleteBookmark}
+export {movieDetailClose, movieAppend, movieDetailAppend, displayHome, displayBookmark, readBookMarks}

@@ -1,17 +1,17 @@
-import {getMovieSearch, getMovieDetail} from './api.js'
-import {movieDetailClose, movieAppend, movieDetailAppend, displayHome, displayBookmark, bookmarkAppend, loadBookMarks, deleteBookmark} from './ui.js'
+import { getMovieSearch, getMovieDetail } from './api.js'
+import { displayHome, displayBookmark, readBookMarks, movieAppend, movieDetailClose, movieDetailAppend } from './ui.js'
+import {createBookmark, deleteBookmark} from './utility.js';
 
 // Bookmark Event
 displayHome()
+readBookMarks();
+
 document.querySelector('#home').addEventListener('click', displayHome);
 document.querySelector('#bookmark').addEventListener('click', displayBookmark);
 
-loadBookMarks();
-
 const saveBookmark = async(id) => {
     const movieDetailData = await getMovieDetail(id);
-    bookmarkAppend(movieDetailData);
-    loadBookMarks();
+    createBookmark(movieDetailData);
 }
 
 document.querySelector('.movie_details').addEventListener('click', (event) => {
@@ -19,8 +19,9 @@ document.querySelector('.movie_details').addEventListener('click', (event) => {
         const modal = event.target.closest('.modal');
         if(modal) {
             saveBookmark(modal.id);
+            readBookMarks();
         }
-        else { console.log("에러 : saveBookmark EventListener") };
+        else { console.log("에러 : saveBookmark EventListener 없음") };
     };
 });
 
@@ -30,17 +31,28 @@ document.querySelector('.bookmarks').addEventListener('click', (event) => {
         if (card) {
             const cardId = card.id.split("_")[1];
             deleteBookmark(cardId);
-            alert("영화를 북마크에서 삭제했습니다!")
+            readBookMarks();
         }
-        else { console.log("에러 : Card EventListener")}
+        else { console.log("에러 : deleteBookmark EventListener 없음")}
     }
 });
 
 // Modal Event
-const movieDetail = async(id) => {
+const movieDetailOpen = async(id) => {
     const movieDetailData = await getMovieDetail(id);
     movieDetailAppend(movieDetailData);
 }
+
+document.querySelector('.cards').addEventListener('click', (event) => {
+    if (event.target.matches('a')) {
+        const card = event.target.closest('.card');
+        if (card) {
+            const cardId = card.id.split("_")[1];
+            movieDetailOpen(cardId);
+        }
+        else { console.log("에러 : movieDetailOpen EventListener 없음")}
+    }
+});
 
 document.querySelector('.movie_details').addEventListener('click', (event) => {
     if(event.target.matches('.modal_close')) {
@@ -48,7 +60,7 @@ document.querySelector('.movie_details').addEventListener('click', (event) => {
         if(modal) {
             movieDetailClose(modal.id);
         }
-        else { console.log("에러 : Modal EventListener") };
+        else { console.log("에러 : movieDetailClose EventListener 없음") };
     };
 });
 
@@ -68,20 +80,8 @@ const movieSearch = async() => {
 }
 
 document.querySelector('#search_btn').addEventListener('click', movieSearch);
-
 document.querySelector('#movie_search').addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         movieSearch();
-    }
-})
-
-document.querySelector('.cards').addEventListener('click', (event) => {
-    if (event.target.matches('a')) {
-        const card = event.target.closest('.card');
-        if (card) {
-            const cardId = card.id.split("_")[1];
-            movieDetail(cardId);
-        }
-        else { console.log("에러 : Card EventListener")}
     }
 });
