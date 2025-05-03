@@ -12,6 +12,7 @@ document.querySelector('#bookmark').addEventListener('click', displayBookmark);
 const saveBookmark = async(id) => {
     const movieDetailData = await getMovieDetail(id);
     createBookmark(movieDetailData);
+    readBookMarks();
 }
 
 document.querySelector('.movie_details').addEventListener('click', (event) => {
@@ -19,7 +20,6 @@ document.querySelector('.movie_details').addEventListener('click', (event) => {
         const modal = event.target.closest('.modal');
         if(modal) {
             saveBookmark(modal.id);
-            readBookMarks();
         }
         else { console.log("에러 : saveBookmark EventListener 없음") };
     };

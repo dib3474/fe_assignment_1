@@ -1,5 +1,5 @@
 import { config } from './apikey.js';
-const API_KEY = config.TMDB_API_KEY;
+const API_KEY = config.API_KEY;
 
 const options = {
     method: 'GET',
