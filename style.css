@@ -1,6 +1,5 @@
 * {
     margin: 0;
-    font-family: "Noto Sans KR";
     font-optical-sizing: auto;
 }
 header {
@@ -14,7 +13,7 @@ header {
     border-bottom: 2px solid black;
 }
 .logo, .nav > ul > li {
-    font-family: "Black Han Sans";
+    font-weight: 600;
     color: white;
 }
 .nav > ul {
@@ -33,9 +32,8 @@ main {
     align-items: center;
 }
 h1 {
-    font-family: "Black Han Sans";
     color: #E9A319;
-    font-weight: 200;
+    font-weight: 600;
     margin-top: 50px;
 }
 .search {
